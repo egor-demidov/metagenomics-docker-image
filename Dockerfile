@@ -10,7 +10,8 @@ WORKDIR /home/dcuser
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
 RUN chmod a+x Miniconda3-latest-Linux-x86_64.sh
 RUN ./Miniconda3-latest-Linux-x86_64.sh -b -p $HOME/anaconda3
-RUN wget https://raw.githubusercontent.com/carpentries-lab/metagenomics-analysis/refs/heads/gh-pages/files/spec-file-Ubuntu22.txt
+
+COPY spec-file-Ubuntu22.txt /home/dcuser
 
 ENV PATH="/home/dcuser/anaconda3/bin:$PATH"
 
@@ -24,4 +25,3 @@ RUN tar -xzf taxdump.tar.gz
 RUN mkdir .taxonkit
 RUN cp names.dmp nodes.dmp delnodes.dmp merged.dmp /home/dcuser/.taxonkit
 RUN rm *dmp readme.txt taxdump.tar.gz gc.prt
-
